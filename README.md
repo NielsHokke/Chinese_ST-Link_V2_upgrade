@@ -1,6 +1,6 @@
 # Chinese ST-Link V2 upgrade
 
-![chinese ST-LINK V2](Images\chinese_ST-Link_V2.jpeg)
+![chinese ST-LINK V2](Images/chinese_ST-Link_V2.jpeg)
 
 # Introduction
 
@@ -11,7 +11,7 @@ The above shown ST-LINK V2 chinese clone STM32 programmers can be picked up from
 
 The upgrade involves both firmware and hardware modifications, changing the pinout as shown below.
 
-![Old and New Pinout after modification](Images\Old_and_New_Pinouts.png)
+![Old and New Pinout after modification](Images/Old_and_New_Pinouts.png)
 
 # Wat you'll need
 
@@ -34,7 +34,7 @@ The upgrade involves both firmware and hardware modifications, changing the pino
 
 To be able to flash our new bootloader and update to ST-LINK V2.1 we need access to the device's programming pins. Start by taking of the metal cover (in the direction of the USB header), and look for 4 metal pads close to the edge of the PCB. 
 
-![Old and New Pinout after modification](Images\PCB_Programing_Pins.png)
+![Old and New Pinout after modification](Images/PCB_Programing_Pins.png)
 
 If you are lucky the pads are already labled, if not use the multimeter to test to which pins of the MCU the pads are connected and lable accordingly. Note the dot in the top left corner of the MCU indicating pin 1. The pads should connect to the following pins in the MCU:
 
@@ -46,11 +46,11 @@ If you are lucky the pads are already labled, if not use the multimeter to test 
 | CLK | Pin 37, PA14     |
 
 
-![Old and New Pinout after modification](Images\STM32F103xx_Pinout.png)
+![Old and New Pinout after modification](Images/STM32F103xx_Pinout.png)
 
 With the pads labled, solder 4 female header cables to the 4 pads as shown in the image below.
 
-![Old and New Pinout after modification](Images\PCB_Programing_Wires.jpeg)
+![Old and New Pinout after modification](Images/PCB_Programing_Wires.jpeg)
 
 The target ST-LINK is now ready to be flashed with the new bootloader. Start by connecting the female header wires to your second ST-Link as follows:
 
@@ -61,7 +61,7 @@ The target ST-LINK is now ready to be flashed with the new bootloader. Start by 
 | DIO      | SWDIO            |
 | CLK      | SWCLK            |
 
-![Old and New Pinout after modification](Images\PCB_Programing_Wires_Connected.jpeg)
+![Old and New Pinout after modification](Images/PCB_Programing_Wires_Connected.jpeg)
 
 ## Flashing the protected boodloader
 
@@ -71,19 +71,19 @@ Run the STM32 ST-LINK Utility v4.3.0 program, and connect the second ST-LINK to 
 
 The First thing to do is to remove the read write protection of our target ST-LINK. In the Utility program click on **Target** ➔ **Option Bytes...**, set **Read Out Protection** to **Disabled** and click **Apply**.
 
-![Utility Target Options Bytes...](Images\Utility_Target_OptionBytes.png)
+![Utility Target Options Bytes...](Images/Utility_Target_OptionBytes.png)
 
-![Utility Read Out Protection Disabled](Images\Utility_ReadOutProtection_Disabled.png)
+![Utility Read Out Protection Disabled](Images/Utility_ReadOutProtection_Disabled.png)
 
 Next we flash the protected bootloader. In the Utility program click on **Target** ➔ **Program & Verify...**, select the **Protected-2-1-Bootloader.bin** File, and click **Start**.
 
-![Utility Target Program & Verify...](Images\Utility_Target_Program&Verify.png)
+![Utility Target Program & Verify...](Images/Utility_Target_Program&Verify.png)
 
-![Utility Program Start](Images\Utility_Program_Start.png)
+![Utility Program Start](Images/Utility_Program_Start.png)
 
 If the flashing of the new bootloader was succesful the log at the botom left of the Utility program should look something like shown below. Double check if the two checksums match.
 
-![Utility Program Log](Images\Utility_Program_Log.png)
+![Utility Program Log](Images/Utility_Program_Log.png)
 
 ## Enabling MSD & VCP
 
@@ -93,12 +93,12 @@ Disconnect the second ST-LINK from your pc and connect the just flashed ST-LINK 
 
 In the Utility program click on **ST-LINK** ➔ **Firmware update**, click on **Device Connect**, select the **STM32+MSD+VCP** Option, and click on **"Yes >>>>"** to upgrade the ST-LINK firmware.
 
-![Utility Program Log](Images\Utility_ST-LINK_FirmwareUpdate.png)
-![Utility Program Log](Images\Utility_ST-LINK_DeviceConnect_2.png)
+![Utility Program Log](Images/Utility_ST-LINK_FirmwareUpdate.png)
+![Utility Program Log](Images/Utility_ST-LINK_DeviceConnect_2.png)
 
 After upgrading you should receive a notification that the upgrade was succesful, close the notification by clicking **OK** and check if the new Firmware Version matches the one shown below.
 
-![Utility Program Log](Images\Utility_ST-LINK_FirmwareVersion.png)
+![Utility Program Log](Images/Utility_ST-LINK_FirmwareVersion.png)
 
 # Step 2: Hardware
 
