@@ -22,7 +22,9 @@ The upgrade involves both firmware and hardware modifications, changing the pino
 * Solder pump or solder wick
 * Multimeter
 * 4 female header cables
+* Utility knive or scalpel
 * Small (single strand) isolated wire
+* Side cutter
 * SMD resistors
 * Windows PC
 * STM32 ST-LINK Utility v4.3.0 program
@@ -93,12 +95,35 @@ Disconnect the second ST-LINK from your pc and connect the just flashed ST-LINK 
 
 In the Utility program click on **ST-LINK** ➔ **Firmware update**, click on **Device Connect**, select the **STM32+MSD+VCP** Option, and click on **"Yes >>>>"** to upgrade the ST-LINK firmware.
 
-![Utility Program Log](Images/Utility_ST-LINK_FirmwareUpdate.png)
-![Utility Program Log](Images/Utility_ST-LINK_DeviceConnect_2.png)
+![ST-LINK Firmware Update](Images/Utility_ST-LINK_FirmwareUpdate.png)
+![ST-LINK Device Connect 2](Images/Utility_ST-LINK_DeviceConnect_2.png)
 
 After upgrading you should receive a notification that the upgrade was succesful, close the notification by clicking **OK** and check if the new Firmware Version matches the one shown below.
 
-![Utility Program Log](Images/Utility_ST-LINK_FirmwareVersion.png)
+![Utility Firmware Version](Images/Utility_ST-LINK_FirmwareVersion.png)
 
 # Step 2: Hardware
 
+Start by desoldering the 4 female header wires we soldered in the previous step, and turn over the PCB so the main MCU faces up.
+
+![PCB Cut Traces](Images/Hardware_Upgrade_Schematic.jpeg)
+
+Using a solder pump or some solder wick, remove as much solder as possible from the pads indicated with the 4 red arrows.
+
+Use your utility knive or scalpel to cut through the traces connecting the pads to rest of the PCB. Re-apply solder to the 4 pins and use the multimeter to verify you have succesfully cut the connections.
+
+![PCB Cut Traces](Images/PCB_CutTraces.jpeg)
+
+Solder a 22Ω resistor on each of the 4 pins. Make sure only the left-hand side of the resistors contacts the solder/pin.
+
+![PCB Resistor 1](Images/PCB_Resistor_1.jpeg)
+
+Following the schematic shown at the start of this section connect each of the just soldered resistors to its corresponding pin on the MCU. Start with the wire connected to pin 12 of MCU and move your way up to the wire connected to pin 31.
+
+![PCB Wire 4](Images/PCB_Wire_4.jpeg)
+
+Solder a 100KΩ resistor to pin 48 of the MCU. Use another wire to connect the other side of the resistor to the 22Ω resistor of the RX pin.
+
+![PCB Wire 5](Images/PCB_Wire_5.jpeg)
+
+# Step 3: Validating!
